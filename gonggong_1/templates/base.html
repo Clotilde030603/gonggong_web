@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ title }} 차세대 건강센터</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="{{ url_for('static', filename='base.css') }}" rel="stylesheet" />
+        <!-- jQuery -->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <!-- Bootstrap JS -->
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="/">차세대 건강센터</a>
+            <button
+                class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarNav"
+                aria-controls="navbarNav"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item {% if request.path == '/e_intro' %}active{% endif %}">
+                        <a class="nav-link" href="/e_intro">기업 소개</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/b_intro' %}active{% endif %}">
+                        <a class="nav-link" href="/b_intro">사업 소개</a>
+                    </li>
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item {% if request.path == '/mypage' %}active{% endif %}">
+                        <a class="nav-link" href="/mypage">나의 정보</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">로그아웃</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item {% if request.path == '/login' %}active{% endif %}">
+                        <a class="nav-link" href="/login">로그인</a>
+                    </li>
+                    <li class="nav-item {% if request.path == '/register' %}active{% endif %}">
+                        <a class="nav-link" href="/register">회원가입</a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+        <div class="container mt-4">{% block content %}{% endblock %}</div>
+        <div class="footer">&copy; 2024 차세대 건강센터. All rights reserved.</div>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    </body>
+</html>
