@@ -1,26 +1,34 @@
 {% extends "base.html" %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}" />
 <div
     id="bannerCarousel"
     class="carousel slide jumbotron jumbotron-fluid text-white mb-5"
     data-ride="carousel"
     style="background-color: #86b6ea; width: 100%; height: 450px; margin: 0; padding: 0">
     <div class="carousel-inner h-100">
-        <div class="carousel-item active h-100">
-            <div class="container-fluid h-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="carousel-item active h-100 position-relative">
+            <img
+                src="{{ url_for('static', filename='banner1.jpg') }}"
+                class="d-block w-100"
+                alt="Banner Image"
+                style="height: 100%; object-fit: cover" />
+            <div class="carousel-caption-bottom">
                 <h1 class="display-4">안녕하세요, 차세대 건강센터입니다!</h1>
-                <p class="lead">국민의 건강과 복지를 위해 최선을 다하는 차세대 건강센터에 오신 것을 환영합니다.</p>
+                <p class="lead">
+                    환영합니다. 국민의 건강과 복지를 위해 최선을 다하는 차세대 건강센터에 오신 것을 환영합니다.
+                </p>
                 <hr class="my-4 bg-light" />
             </div>
         </div>
-        <div class="carousel-item h-100">
-            <div class="container-fluid h-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="carousel-item h-100 position-relative">
+            <div class="carousel-caption-bottom">
                 <h1 class="display-4">건강 상담을 제공해드립니다</h1>
                 <p class="lead">전문 의료진과의 상담을 통해 건강을 관리하세요.</p>
                 <hr class="my-4 bg-light" />
             </div>
         </div>
-        <div class="carousel-item h-100">
-            <div class="container-fluid h-100 d-flex flex-column justify-content-center align-items-center">
+        <div class="carousel-item h-100 position-relative">
+            <div class="carousel-caption-bottom">
                 <h1 class="display-4">다양한 복지 서비스를 제공합니다</h1>
                 <p class="lead">국민의 삶의 질을 높이는 복지 서비스를 만나보세요.</p>
                 <hr class="my-4 bg-light" />
@@ -104,8 +112,7 @@
         <h2 class="mb-4">문의하기</h2>
         <div class="card shadow-sm">
             <div class="card-body">
-                <h5 class="card-title">연락처</h5>
-                <p class="card-text">궁금한 사항이 있으면 언제든지 연락해 주세요:</p>
+                <p class="card-text">궁금한 사항이 있으면 언제든지 연락해 주세요.</p>
                 <ul class="list-unstyled">
                     <li><strong>차세대 건강센터</strong></li>
                     <li>서울특별시 강남구 테헤란로 123</li>
