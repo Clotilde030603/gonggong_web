@@ -14,6 +14,7 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=60)
 # 세션 타입 설정
 app.config['SESSION_TYPE'] = 'filesystem'
 
+# 비밀번호 암호화
 def password_sha_512_hash(data):
     # 데이터를 UTF-8 인코딩으로 변환하여 해싱합니다.
     encoded_data = data.encode('utf-8')
@@ -25,30 +26,37 @@ db_path = "main.db"
 conn = sqlite3.connect(db_path, check_same_thread=False)
 cur = conn.cursor() 
 
+# 메인 페이지
 @app.route('/')
 def home():
     return render_template('main.html')
 
+# 회사 소개
 @app.route('/e_intro', methods=['GET', 'POST'])
 def e_intro():
     return render_template('e_intro.html', title='기업 소개')
 
+# 사업 소개
 @app.route('/b_intro', methods=['GET', 'POST'])
 def b_intro():
     return render_template('b_intro.html', title='사업 소개')
 
+# 서비스1
 @app.route('/serv1', methods=['GET', 'POST'])
 def serv1():
     return render_template('serv1.html', title='서비스1')
 
+# 서비스2
 @app.route('/serv2', methods=['GET', 'POST'])
 def serv2():
     return render_template('serv2.html', title='서비스2')
 
+# 서비스 3
 @app.route('/serv3', methods=['GET', 'POST'])
 def serv3():
     return render_template('serv3.html', title='서비스3')
 
+# 회원가입
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'GET':
@@ -77,6 +85,7 @@ def register():
             msg = "회원가입 실패"
             return render_template('register.html', msg=msg)
 
+# 로그인
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'GET':
@@ -115,10 +124,12 @@ def login():
             msg = "로그인 실패"
             return render_template('login.html', msg=msg)
 
+# 나의 정보 페이지
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
     return render_template('mypage.html', title='나의 페이지')
 
+# 로그아웃
 @app.route('/logout', methods=['GET'])
 def logout():
     if request.method == 'GET':
