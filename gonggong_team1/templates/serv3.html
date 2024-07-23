@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}사업 1 소개{% endblock %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='serv.css') }}" />
+
+<div class="container my-5">
+    <h2 class="mb-4 text-center">사업 3</h2>
+    <div class="card shadow-sm">
+        <img class="card-img-top" src="https://via.placeholder.com/800x400" alt="사업 1 이미지" />
+        <div class="card-body">
+            <h3 class="card-title">차세대 건강 진흥</h3>
+            <p class="card-text">
+                사업 1은 차세대 건강 진흥을 목표로 하며, 다양한 건강 관리 서비스를 제공합니다. 우리는 고객의 건강을
+                최우선으로 생각하며, 혁신적인 기술과 전문가의 노하우를 바탕으로 최상의 서비스를 제공하고 있습니다.
+            </p>
+            <h4 class="mt-4">주요 내용</h4>
+            <ul class="list-unstyled">
+                <li>
+                    <strong>맞춤형 건강 관리:</strong> 개인의 건강 상태에 맞춘 맞춤형 건강 관리 프로그램을 제공합니다.
+                </li>
+                <li><strong>최신 기술 도입:</strong> 최신 의료 기술을 활용하여 건강 관리의 효율성을 높입니다.</li>
+                <li><strong>전문가 상담:</strong> 전문 의료진과의 상담을 통해 건강 문제를 해결합니다.</li>
+                <li><strong>커뮤니티 지원:</strong> 지역 사회와 협력하여 건강 증진 프로그램을 운영합니다.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
