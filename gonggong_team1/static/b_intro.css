@@ -1,0 +1,55 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    background-color: #ffffff;
+    padding: 20px;
+    text-align: center;
+}
+
+.card-title {
+    color: #2c3e50;
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+}
+
+.card-text {
+    color: #34495e;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.card-img-top {
+    border-bottom: 1px solid #ccd1d9;
+    max-height: 200px;
+    object-fit: cover;
+}
+
+.text-decoration-none {
+    text-decoration: none;
+    color: inherit;
+}

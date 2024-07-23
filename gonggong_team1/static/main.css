@@ -34,3 +34,73 @@
     height: auto; /* Ensure images scale with the carousel */
     object-fit: cover; /* Maintain aspect ratio */
 }
+
+.card {
+    border: none;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card-body {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+.card-title {
+    color: #2c3e50;
+    font-size: 1.25rem;
+}
+
+.card-text {
+    color: #34495e;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.btn-primary {
+    background-color: #86b6ea;
+    border-color: #86b6ea;
+    color: #ffffff;
+    padding: 10px 15px;
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #92bfef;
+    border-color: #92bfef;
+}
+
+#contact .card {
+    border: 1px solid #ccd1d9;
+    border-radius: 8px;
+}
+
+#contact .card-body {
+    padding: 30px;
+}
+
+#contact .card-text {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+#contact ul {
+    padding-left: 0;
+}
+
+#contact ul li {
+    margin-bottom: 10px;
+}
+
+#contact ul li strong {
+    display: block;
+    color: #2c3e50;
+    font-size: 1.2rem;
+}
+
+#contact ul li abbr {
+    font-size: 1rem;
+    text-decoration: none;
+    color: #2980b9;
+}

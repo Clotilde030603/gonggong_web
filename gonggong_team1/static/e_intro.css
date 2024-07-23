@@ -1,0 +1,57 @@
+body {
+    font-family: 'Nanum Gothic', sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+}
+
+h2 {
+    color: #2c3e50;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+p,
+ul {
+    color: #34495e;
+    line-height: 1.6;
+}
+
+ul {
+    padding-left: 20px;
+}
+
+ul.list-unstyled {
+    list-style: none;
+    padding-left: 0;
+}
+
+ul.list-unstyled li {
+    margin-bottom: 10px;
+}
+
+strong {
+    color: #2980b9;
+}
+
+.mb-5 {
+    margin-bottom: 3rem;
+}
+
+section {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+address {
+    font-style: normal;
+    line-height: 1.6;
+}
+
+address p {
+    margin-bottom: 10px;
+}
