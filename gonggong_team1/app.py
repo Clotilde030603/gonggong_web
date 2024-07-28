@@ -80,6 +80,10 @@ def serv2():
 @app.route('/serv3', methods=['GET', 'POST'])
 def serv3():
     return render_template('serv3.html', title='서비스3')
+# 서비스 4
+@app.route('/serv4', methods=['GET', 'POST'])
+def serv4():
+    return render_template('serv4.html', title='서비스4')
 
 # 회원가입
 @app.route('/register', methods=['GET', 'POST'])
