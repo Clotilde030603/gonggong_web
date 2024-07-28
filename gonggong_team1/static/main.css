@@ -39,11 +39,17 @@
     border: none;
     border-radius: 8px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .card-body {
     background-color: #ffffff;
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 .card-title {
@@ -55,6 +61,7 @@
     color: #34495e;
     font-size: 1rem;
     line-height: 1.6;
+    flex-grow: 1;
 }
 
 .btn-primary {

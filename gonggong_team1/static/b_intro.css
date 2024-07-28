@@ -13,16 +13,25 @@ h2 {
     text-align: center;
 }
 
+.card-deck {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
 .card {
     border: none;
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+    max-width: 300px;
+    margin-bottom: 20px;
 }
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgba(34, 145, 230, 0.2);
 }
 
 .card-body {
