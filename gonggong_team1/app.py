@@ -27,12 +27,11 @@ conn = sqlite3.connect(db_path, check_same_thread=False)
 cur = conn.cursor()
 cur.execute('''
 CREATE TABLE IF NOT EXISTS user (
-    username VARCHAR(20) PRIMARY KEY,
+    id VARCHAR(20) PRIMARY KEY,
+    pw VARCHAR(20),
     name VARCHAR(20),
     gender VARCHAR(20),
-    birthdate DATETIME,
-    password VARCHAR(20),
-    confirm_password VARCHAR(20),
+    birth DATETIME,
     phone VARCHAR(20),
     address VARCHAR(256),
     email VARCHAR(128),
@@ -92,24 +91,24 @@ def register():
         return render_template('register.html')
     elif request.method == 'POST':
         try:
-            username = request.form['username']
-            password = request.form['password']
+            id = request.form['username']
+            pw = request.form['password']
             name = request.form['name']
             gender = request.form['gender']
-            birthdate = request.form['birthdate']
-            confirm_password = request.form['confirm_password']
+            birth = request.form['birthdate']
+            confirm_pw = request.form['confirm_password']
             phone = request.form['phone']
             address = request.form['address']
             email = request.form['email']
             diseases = request.form['diseases']
             medications = request.form['medications']
-            if password == confirm_password:
-                password = password_sha_512_hash(password)
+            if pw == confirm_pw:
+                pw = password_sha_512_hash(pw)
                 insert_query = """
-                INSERT INTO user (username, password, name, gender, birthdate, confirm_password, phone, address, email, diseases, medications) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                INSERT INTO user (id, pw, name, gender, birth, phone, address, email, diseases, medications) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """
-                cur.execute(insert_query, (username, password, name, gender, birthdate, confirm_password, phone, address, email, diseases, medications))
+                cur.execute(insert_query, (id, pw, name, gender, birth, phone, address, email, diseases, medications))
                 conn.commit()
                 msg = "회원가입 성공"
                 return render_template('login.html', msg=msg)
@@ -124,18 +123,18 @@ def login():
         return render_template('login.html')
     elif request.method == 'POST':
         try:
-            username = request.form['username']
-            password = request.form['password']
-            password = password_sha_512_hash(password)
+            id = request.form['username']
+            pw = request.form['password']
+            pw = password_sha_512_hash(pw)
             select_query = """
-            SELECT username FROM user WHERE username = ? AND password = ?
+            SELECT id FROM user WHERE id = ? AND pw = ?
             """
-            cur.execute(select_query, (username, password))
+            cur.execute(select_query, (id, pw))
             user = cur.fetchone()
             select_query = """
             SELECT COUNT(*) FROM login_logs WHERE u_id = ? AND rdate > DATETIME('now', '-30 minute') 
             """
-            cur.execute(select_query, (username, ))
+            cur.execute(select_query, (id, ))
             login_logs_count = cur.fetchone()
             if login_logs_count[0] >= 5 :
                 msg = "5회 이상 틀렸습니다. 30분 뒤에 다시 시도 해주세요!"
@@ -145,7 +144,7 @@ def login():
                 INSERT INTO login_logs (u_id) 
                 VALUES (?)
                 """
-                cur.execute(insert_query, (username, ))
+                cur.execute(insert_query, (id, ))
                 conn.commit()
                 msg = "로그인 실패"
                 return render_template('login.html', msg=msg)
@@ -160,51 +159,50 @@ def login():
 @app.route('/mypage', methods=['GET', 'POST'])
 def mypage():
     if request.method == 'GET':
-        username = session['username']
+        id = session['username']
         select_query = """
-            SELECT username, password, name, gender, birthdate, confirm_password, phone, address, email, diseases, medications FROM user WHERE username = ?
+            SELECT id, pw, name, gender, birth, phone, address, email, diseases, medications FROM user WHERE id = ?
         """
-        cur.execute(select_query, (username, ))
+        cur.execute(select_query, (id, ))
         user_data = cur.fetchone()
         current_user = {
-            "username": user_data[0],
-            "password": user_data[1],
+            "id": user_data[0],
+            "pw": user_data[1],
             "name": user_data[2],
             "gender": user_data[3],
-            "birthdate": user_data[4],
-            "confirm_password": user_data[5],
-            "phone": user_data[6],
-            "address": user_data[7],
-            "email": user_data[8],
-            "diseases": user_data[9],
-            "medications": user_data[10]
+            "birth": user_data[4],
+            "phone": user_data[5],
+            "address": user_data[6],
+            "email": user_data[7],
+            "diseases": user_data[8],
+            "medications": user_data[9]
         }
-        print(current_user['birthdate'])
+        print(current_user['birth'])
         return render_template('mypage.html', title='나의 페이지', current_user = current_user)
     elif request.method == 'POST':
-        username = session['username']
-        password = request.form['password']
+        id = session['username']
+        pw = request.form['password']
         name = request.form['name']
         gender = request.form['gender']
-        birthdate = request.form['birthdate']
+        birth = request.form['birthdate']
         phone = request.form['phone']
         address = request.form['address']
         email = request.form['email']
         diseases = request.form['diseases']
         medications = request.form['medications']
-        password = password_sha_512_hash(password)
+        pw = password_sha_512_hash(pw)
         select_query = """
-            SELECT password FROM user WHERE username = ?
+            SELECT pw FROM user WHERE id = ?
             """
-        cur.execute(select_query, (username, ))
-        user_password = cur.fetchone()
-        if user_password[0] == password:
+        cur.execute(select_query, (id, ))
+        user_pw = cur.fetchone()
+        if user_pw[0] == pw:
             update_query = """
                 UPDATE user
-                SET name = ?, gender = ?, birthdate = ?, phone = ?, address = ?, email = ?, diseases = ?, medications = ?
-                WHERE username = ?;
+                SET name = ?, gender = ?, birth = ?, phone = ?, address = ?, email = ?, diseases = ?, medications = ?
+                WHERE id = ?;
             """
-            cur.execute(update_query, (name, gender, birthdate, phone, address, email, diseases, medications, username))
+            cur.execute(update_query, (name, gender, birth, phone, address, email, diseases, medications, id))
             conn.commit()
             msg = "수정 성공!!"
         else:
